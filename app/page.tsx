@@ -75,6 +75,39 @@ export default function Home() {
           </p>
         </div>
       </div>
+      <div className="flex flex-col gap-2">
+        <h4 className="text-large lg:text-xLarge">ಶುದ್ಧೀಕರಣ</h4>
+        <div className="flex flex-col gap-4 pl-4">
+          <ul className="text-small lg:text-medium">
+            <li>ಓಂ ಆಪೋಹಿಷ್ಠಾ ಮಯೋ ಭುವಃ|</li>
+            <li>ತಾನ ಊರ್ಜೆ ದದಾತನ |</li>
+            <li>ಮಹೇರಣಾಯ ಚಕ್ಷಸೇ|</li>
+            <li>ಯೋವಃ ಶಿವತಮೋ ರಸಃ|</li>
+            <li>ತಸ್ಯ ಭಾಜಯತೇ ಹನಃ|</li>
+            <li>ಉಶತೀರಿವ ಮಾತರಃ |</li>
+            <li>ತಸ್ಮಾ ಅರಂಗ ಮಾಮವಃ|</li>
+            <li>ಯಸ್ಯ ಕ್ಷಯಾಯ ಜಿನ್ವಥಃ</li>
+            <li>ಆಪೋ ಜನಯ ಥಾ ಚ ನಃ|</li>
+          </ul>
+        </div>
+      </div>
+      <div className="flex flex-col gap-2">
+        <h4 className="text-large lg:text-xLarge">ಗಾಯತ್ರೀ ಜಪ</h4>
+        <div className="flex flex-col gap-4 pl-4">
+          <p className="text-small lg:text-medium">
+            ಓಂ ಭೂರ್ಭುವಸ್ಸುವಃ || ಓಂ ತತ್ಸವಿತುವರೇಣ್ಯಂ ಭರ್ಗೋ ದೇವಸ್ಯ ಧೀಮಹಿ ಧಿಯೋ ಯೋನಃ
+            ಪ್ರಚೋದಯಾತ್ ||
+          </p>
+          <p className="text-small lg:text-medium">
+            ಶ್ರೀ ಗಾಯತ್ರೀ ಜಪಂ ಶ್ರೀ ಪರಮೇಶ್ವರ ಪ್ರೀಯತಾಂ ||
+          </p>
+          <p className="text-small lg:text-medium">
+            ಓಂ ಋಗ್ವೇದಾಯ ಸ್ವಾಹಾ | ಓಂ ಯಜುರ್ವೇದಾಯ ಸ್ವಾಹಾ | ಓಂ ಸಾಮ ವೇದಾಯ ಸ್ವಾಹಾ|| ಓಂ
+            ಋಗ್ವೇದಾಯ ಸ್ವಾಹಾ | ಓಂ ಯಜುರ್ವೇದಾಯ ಸ್ವಾಹಾ | ಓಂ ಸಾಮ ವೇದಾಯ ಸ್ವಾಹಾ ||
+          </p>
+          <p className="text-small lg:text-medium">ಓಂ ತತ್ಸತ್</p>
+        </div>
+      </div>
     </div>
   );
 }

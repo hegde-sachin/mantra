@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Anek_Kannada } from "next/font/google";
 import "./globals.css";
+import { HeaderComponent } from "./components/header.component";
+import { MainComponent } from "./components/main.component";
 
 const anekKannadaSans = Anek_Kannada({
   variable: "--font-anek-kannada-sans",
-  subsets: ["kannada"]
+  subsets: ["kannada"],
 });
 
 export const metadata: Metadata = {
@@ -19,10 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="kn">
-      <body
-        className={`${anekKannadaSans.variable} antialiased`}
-      >
-        {children}
+      <body className={`${anekKannadaSans.variable} antialiased`}>
+        <HeaderComponent />
+        <MainComponent>{children}</MainComponent>
       </body>
     </html>
   );
