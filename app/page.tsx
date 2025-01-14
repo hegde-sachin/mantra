@@ -1,101 +1,80 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
+        <h4 className="text-large lg:text-xLarge">ಪ್ರಾರ್ಥನೆ</h4>
+        <div className="flex flex-col gap-1 pl-4">
+          <p className="text-small lg:text-medium">
+            ಗುರುಬ್ರಹ್ಮ ಗುರುರ್ವಿಷ್ಣೋ ಗುರರ್ದೇವೋ ಮಹೇಶ್ವರಃ | ಗುರು ಸಾಕ್ಷಾತ್ ಪರಬ್ರಹ್ಮ
+            ತಸ್ಮೈ ಶ್ರೀ ಗುರವೇ ನಮಃ||
+          </p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+      <div className="flex flex-col gap-2">
+        <h4 className="text-large lg:text-xLarge">ಆಚಮ್ಯ</h4>
+        <div className="flex flex-col gap-1 pl-4">
+          <p className="text-small lg:text-medium">
+            ಓಂ ಋಗ್ವೇದಾಯ ಸ್ವಾಹಾ | ಓಂ ಯಜುರ್ವೇದಾಯ ಸ್ವಾಹಾ | ಓಂ ಸಾಮ ವೇದಾಯ ಸ್ವಾಹಾ |
+          </p>
+          <p className="text-small lg:text-medium">
+            ಓಂ ಅಪವಿತ್ರಃ ಪವಿತ್ರೋ ವಾ ಸರ್ವಾವಸ್ಥಾಂಗತೋಪಿ ವಾ | ಯಃ ಸ್ಮರೇತ್ ಪುಂಡರೀಕಾಕ್ಷಂ
+            ಸ ಬಾಹ್ಯಾಭ್ಯಂತರಃ ಶುಚಿಃ ||
+          </p>
+        </div>
+      </div>
+      <div className="flex flex-col gap-2">
+        <h4 className="text-large lg:text-xLarge">ಭಸ್ಮ ಧಾರಣಂ</h4>
+        <div className="flex flex-col gap-4 pl-4">
+          <p className="text-small lg:text-medium">
+            ಓಂ ತತ್ಪುರುಷಾಯ ವಿದ್ಮಹೇ | ಮಹಾದೇವಾಯ ಧೀಮಹಿ | ತನ್ನೋ ರುದ್ರಃ ಪ್ರಚೋದಯಾತ್||
+            ಓಂ ತ್ರ್ಯಂಬಕಂ ಯಜಾಮಹೇ ಸುಗಂಧಿಂ ಪುಷ್ಟಿ ವರ್ಧನಂ || ಊರ್ವಾರುಕಮಿವ ಬಂಧನಾನ್ಮ
+            ತ್ಯೊ ರ್ಮುಕ್ಷೀಯ ಮಾ ಮೃತಾತ್ ||
+          </p>
+          <p className="text-small lg:text-medium">
+            ಅಗ್ನಿರಿತಿ ಭಸ್ಮ | ವಾಯುರಿತಿಭಸ್ಮ | ಜಲಮಿತಿಭಸ್ಮ | ವ್ಯೋಮೇತಿ ಭಸ್ಮ
+          </p>
+        </div>
+      </div>
+      <div className="flex flex-col gap-2">
+        <h4 className="text-large lg:text-xLarge">ಪ್ರಾಣಾಯಾಮ</h4>
+        <div className="flex flex-col gap-4 pl-4">
+          <ul className="text-small lg:text-medium">
+            <li>ಓಂ ಪ್ರಣವಸ್ಯ ಪರಬ್ರಹ್ಮ ಋಷಿಃ| (ಇತಿ ಸಿರ್ಸಿ)</li>
+            <li>ಗಾಯತ್ರೀ ಛಂದಃ| (ಇತಿ ಮುಖೇ)</li>
+            <li>ಪರಮಾತ್ಮಾ ದೇವತಾ| (ಇತಿ ಜಠರೇ)</li>
+            <li>ಪ್ರ್ರಾಣಾಯಾಮೇ ವಿನಿಯೋಗಃ</li>
+          </ul>
+          <ul className="text-small lg:text-medium">
+            <li>ಓಂ ಭೂಃ| (ಇತಿ ಪಾದಯೋಃ)</li>
+            <li>ಓಂ ಭುವಃ| (ಇತಿ ಜಾನುನೋಃ)</li>
+            <li>ಓಂ ಸುವಃ| (ಇತಿ ಊರ್ವೋಃ)</li>
+            <li>ಓಂ ಮಹಃ| (ಇತಿ ಜಠರೇ)</li>
+            <li>ಓಂ ಜನಃ| (ಇತಿ ಕಂಠೇ)</li>
+            <li>ಓಂ ತಪಃ| (ಇತಿ ಮುಖೇ)</li>
+            <li>ಓಗ್ಂ ಸತ್ಯಂ| (ಇತಿ ಸಿರ್ಸಿ)</li>
+          </ul>
+          <p className="text-small lg:text-medium">
+            ಓಂ ಭೂರ್ಭುವಸ್ಸುವಃ|| ಓಂ ತತ್ಸವಿತುರ್ವರೇಣಿಯಂ ಭರ್ಗೋ ದೇವಸ್ಯ ಧೀಮಹಿ ಧಿಯೋ ಯೋನಃ
+            ಪ್ರಚೋದಯಾತ್||
+          </p>
+        </div>
+      </div>
+      <div className="flex flex-col gap-2">
+        <h4 className="text-large lg:text-xLarge">ಸಂಕಲ್ಪ</h4>
+        <div className="flex flex-col gap-4 pl-4">
+          <p className="text-small lg:text-medium">
+            ವಿಷ್ಣೋ ವಿಷ್ಣೋ ರಾಜ್ಞಯಾ ಪ್ರವರ್ತಮಾನಸ್ಯ ಆದ್ಯ ಬ್ರಹ್ಮಣಃ , ದ್ವಿತೀಯ ಪರಾರ್ಧೇ,
+            ಶ್ರೀಹರೇಃ, ಶ್ವೇತ ವರಾಹ ಕಲ್ಪೇ, ವೈವಸ್ವತ ಮನ್ವಂತರೇ, ಕಲಿಯುಗೇ,ಪ್ರಥಮ ಪಾದೇ,
+            ಜಂಬೂ ದ್ವೀಪೇ, ಭರತ ಖಂಡೇ, ಭಾರತ ವರ್ಷೇ, ಶ್ರೀಮದ್ ಗೋದಾವರ್ಯಾಂ, ದಕ್ಷಿಣ ತೀರೇ,
+            ಗೋಕರ್ಣ ಮಂಡಲೇ, ಗೋ ರಾಷ್ಟ್ರ ದೇಶೇ, ಭಾಸ್ಕರ ಕ್ಷೇತ್ರೇ, ಸಹ್ಯ ಪರ್ವತೇ,
+            ಶಾಲಿವಾಹನ ಶಕಾಬ್ಧೇ, ಅಸ್ಮಿನ್ ವರ್ತಮಾನ ಕಾಲೇ, ವ್ಯವಹಾರಿಕೇ, --- ನಾಮ
+            ಸಂವತ್ಸರೇ, ---ಅಯನೇ, ---ಋತೌ, ---ಮಾಸೇ, ---ಪಕ್ಷೇ, ---ತಿಥೌ,
+            ---ವಾಸರೇ(ವಾರೇ), ಶುಭ ಯೋಗ, ಶುಭ ಕರಣ, ಏವಂ ಗುಣ ವಿಶೇಷಣ ವಿಶಿಷ್ಟಾಯಾಂ,
+            ಪುಣ್ಯಯಾಂ ಪುಣ್ಯ ಕಾಲೇ , ಮಮೋಪಾತ್ತ ದುರಿತ ಕ್ಷಯ ದ್ವಾರಾ, ಶ್ರೀ ಪರಮೇಶ್ವರ
+            ಪ್ರೀತ್ಯರ್ಥಂ ಪ್ರಾತರ್ / ಸಾಯಂ ಸಂಧ್ಯಾಮುಪಾಸ್ಯೆ
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

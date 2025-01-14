@@ -13,6 +13,13 @@ export default {
         foreground: "var(--foreground)",
       },
     },
+    fontSize: {
+      small: "0.75rem",
+      medium: "0.875rem",
+      base: "1rem",
+      xLarge: "1.25rem",
+      large: "1.125rem",
+    }
   },
   plugins: [],
 } satisfies Config;
