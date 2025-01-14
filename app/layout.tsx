@@ -4,6 +4,7 @@ import "./globals.css";
 
 const anekKannadaSans = Anek_Kannada({
   variable: "--font-anek-kannada-sans",
+  subsets: ["kannada"]
 });
 
 export const metadata: Metadata = {
