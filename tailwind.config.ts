@@ -15,13 +15,13 @@ export default {
       },
     },
     fontSize: {
-      small: "0.75rem",
-      medium: "0.875rem",
       base: "1rem",
-      large: "1.125rem",
-      xLarge: "1.25rem",
-      "2xLarge": "2rem",
-      "3xLarge": "2.5rem",
+      large: "1.25rem",
+      xLarge: "1.5rem",
+      "2xLarge": "1.75rem",
+      "3xLarge": "2rem",
+      "4xLarge": "2.25rem",
+      "5xLarge": "2.5rem",
     },
     maxWidth: {
       container: '64rem'
