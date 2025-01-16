@@ -1,12 +1,24 @@
 import type { Metadata } from "next";
-import { Anek_Kannada } from "next/font/google";
 import "./globals.css";
 import { HeaderComponent } from "./components/header.component";
 import { MainComponent } from "./components/main.component";
+import localFont from "next/font/local";
 
-const anekKannadaSans = Anek_Kannada({
-  variable: "--font-anek-kannada-sans",
-  subsets: ["kannada"],
+const anekKannadaFont = localFont({
+  src: [
+    {
+      path: "../public/fonts/AnekKannada-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/AnekKannada-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+  ],
+  display: "swap",
+  variable: "--font-anek-kannada",
 });
 
 export const metadata: Metadata = {
@@ -21,7 +33,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="kn">
-      <body className={`${anekKannadaSans.variable} antialiased`}>
+      <meta name="apple-mobile-web-app-title" content="ಮಂತ್ರ" />
+      <body className={`${anekKannadaFont.className} antialiased`}>
         <HeaderComponent />
         <MainComponent>{children}</MainComponent>
       </body>

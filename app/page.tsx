@@ -143,7 +143,7 @@ export default function Home() {
     <div className="flex flex-col gap-4">
       {contents.map((content, index) => (
         <div key={index} className="flex flex-col gap-2">
-          <h4 className="font-medium text-large lg:text-xLarge">{content.title}</h4>
+          <h2 className="font-medium text-large lg:text-xLarge">{content.title}</h2>
           <div className="flex flex-col gap-4 pl-4">
             {content.details.map((detail, index) => {
               if (detail.paragraph) {
