@@ -23,13 +23,13 @@ export default async function Sandhyavandane() {
   const response = await fetch(url);
   const { data: panchanga } = await response.json() as PanchangaResponse;
 
-  const samvatsara = SAMVATSARA[panchanga.years.saka.name] || "---";
-  const ayana = AYANA[panchanga.ayana.name] || "---";
-  const rutu = RUTU[panchanga.ritu.name] || "---";
-  const maasa = MAASA[panchanga.masa.amanta] || "---";
-  const paksha = PAKSHA[panchanga.paksha] || "---";
-  const thithi = THITHI[panchanga.tithi[0].name] || "---";
-  const vaara = VAARA[panchanga.vaara.name] || "---";
+  const samvatsara = SAMVATSARA[panchanga.years.saka.name as keyof typeof SAMVATSARA] || "---";
+  const ayana = AYANA[panchanga.ayana.name as keyof typeof AYANA] || "---";
+  const rutu = RUTU[panchanga.ritu.name as keyof typeof RUTU] || "---";
+  const maasa = MAASA[panchanga.masa.amanta as keyof typeof MAASA] || "---";
+  const paksha = PAKSHA[panchanga.paksha as keyof typeof PAKSHA] || "---";
+  const thithi = THITHI[panchanga.tithi[0].name as keyof typeof THITHI] || "---";
+  const vaara = VAARA[panchanga.vaara.name as keyof typeof VAARA] || "---";
 
   const contents: Array<Content> = [
     {
