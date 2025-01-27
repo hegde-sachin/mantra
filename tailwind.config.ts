@@ -12,6 +12,9 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
         "brand-color": "var(--brand-color)",
+        "accent-3": "var(--accent-3)",
+        "accent-4": "var(--accent-4)",
+        "accent-11": "var(--accent-11)"
       },
     },
     fontSize: {
@@ -25,6 +28,13 @@ export default {
     },
     maxWidth: {
       container: '64rem'
+    },
+    height: {
+      header: '5rem',
+      mainLink: '3rem',
+    },
+    minHeight: {
+      main: 'calc(100dvh - 5rem)'
     }
   },
   plugins: [],
