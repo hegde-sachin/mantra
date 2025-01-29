@@ -1,10 +1,10 @@
 export const THITHI = {
     "Pratipada": "ಪ್ರತಿಪದ",
-    "Dvitiya": "ದ್ವಿತೀಯ",
+    "Dwitiya": "ದ್ವಿತೀಯ",
     "Tritiya": "ತೃತೀಯ",
     "Chaturthi": "ಚತುರ್ಥಿ",
     "Panchami": "ಪಂಚಮಿ",
-    "Shashthi": "ಷಷ್ಠಿ",
+    "Shashti": "ಷಷ್ಠಿ",
     "Saptami": "ಸಪ್ತಮಿ",
     "Ashtami": "ಅಷ್ಟಮಿ",
     "Navami": "ನವಮಿ",

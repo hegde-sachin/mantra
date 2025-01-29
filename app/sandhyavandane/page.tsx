@@ -19,8 +19,11 @@ const generateTimestamp = () => {
 
 export default async function Sandhyavandane() {
   const url = `https://api.production.dharmayana.in/v1/panchanga/details?timestamp=${generateTimestamp()}&lat=12.97194&long=77.59369`;
+  console.log(url);
 
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    next: {revalidate: 3600}
+  });
   const { data: panchanga } = await response.json() as PanchangaResponse;
 
   const samvatsara = SAMVATSARA[panchanga.years.saka.name as keyof typeof SAMVATSARA] || "---";

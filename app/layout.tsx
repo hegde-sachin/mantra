@@ -3,7 +3,6 @@ import "./globals.css";
 import { HeaderComponent } from "./components/header.component";
 import { MainComponent } from "./components/main.component";
 import localFont from "next/font/local";
-import { ServiceWorkerComponent } from "./components/service-worker.component";
 
 const anekKannadaFont = localFont({
   src: [
@@ -36,7 +35,6 @@ export default function RootLayout({
     <html lang="kn">
       <meta name="apple-mobile-web-app-title" content="ಮಂತ್ರ" />
       <body className={`${anekKannadaFont.className} antialiased`}>
-        <ServiceWorkerComponent />
         <HeaderComponent />
         <MainComponent>{children}</MainComponent>
       </body>
