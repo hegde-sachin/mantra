@@ -19,7 +19,6 @@ const generateTimestamp = () => {
 
 export default async function Sandhyavandane() {
   const url = `https://api.production.dharmayana.in/v1/panchanga/details?timestamp=${generateTimestamp()}&lat=12.97194&long=77.59369`;
-  console.log(url);
 
   const response = await fetch(url, {
     next: {revalidate: 3600}
@@ -29,7 +28,7 @@ export default async function Sandhyavandane() {
   const samvatsara = SAMVATSARA[panchanga.years.saka.name as keyof typeof SAMVATSARA] || "---";
   const ayana = AYANA[panchanga.ayana.name as keyof typeof AYANA] || "---";
   const rutu = RUTU[panchanga.ritu.name as keyof typeof RUTU] || "---";
-  const maasa = MAASA[panchanga.masa.amanta as keyof typeof MAASA] || "---";
+  const maasa = MAASA[panchanga.masa.purnima as keyof typeof MAASA] || "---";
   const paksha = PAKSHA[panchanga.paksha as keyof typeof PAKSHA] || "---";
   const thithi = THITHI[panchanga.tithi[0].name as keyof typeof THITHI] || "---";
   const vaara = VAARA[panchanga.vaara.name as keyof typeof VAARA] || "---";
