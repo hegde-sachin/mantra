@@ -2,9 +2,9 @@ import type { Config } from "tailwindcss";
 
 export default {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -16,26 +16,26 @@ export default {
         "accent-4": "var(--accent-4)",
         "accent-11": "var(--accent-11)"
       },
+      fontSize: {
+        base: "1rem",
+        large: "1.25rem",
+        xLarge: "1.5rem",
+        "2xLarge": "1.75rem",
+        "3xLarge": "2rem",
+        "4xLarge": "2.25rem",
+        "5xLarge": "2.5rem",
+      },
+      maxWidth: {
+        container: '64rem'
+      },
+      height: {
+        header: '5rem',
+        mainLink: '3rem',
+      },
+      minHeight: {
+        main: 'calc(100dvh - 5rem)'
+      }
     },
-    fontSize: {
-      base: "1rem",
-      large: "1.25rem",
-      xLarge: "1.5rem",
-      "2xLarge": "1.75rem",
-      "3xLarge": "2rem",
-      "4xLarge": "2.25rem",
-      "5xLarge": "2.5rem",
-    },
-    maxWidth: {
-      container: '64rem'
-    },
-    height: {
-      header: '5rem',
-      mainLink: '3rem',
-    },
-    minHeight: {
-      main: 'calc(100dvh - 5rem)'
-    }
   },
   plugins: [],
 } satisfies Config;
