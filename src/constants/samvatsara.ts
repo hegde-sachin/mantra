@@ -37,7 +37,7 @@ export const SAMVATSARA = {
     "Shubhakruth": "ಶುಭಕೃತ್",
     "Shobhakruth": "ಶೋಭಕೃತ್",
     "Krodhi": "ಕ್ರೋಧಿ",
-    "Vishvavasu": "ವಿಶ್ವವಸು",
+    "Visvaavasu": "ವಿಶ್ವವಸು",
     "Parabhava": "ಪರಾಭವ",
     "Plavanga": "ಪ್ಲವಂಗ",
     "Keelaka": "ಕೀಲಕ",

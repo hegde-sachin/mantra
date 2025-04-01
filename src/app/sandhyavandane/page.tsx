@@ -1,37 +1,119 @@
-import { ContentComponent } from "../components/content.component";
-import { AYANA } from "../constants/ayana";
-import { MAASA } from "../constants/maasa";
-import { PAKSHA } from "../constants/paksha";
-import { RUTU } from "../constants/rutu";
-import { SAMVATSARA } from "../constants/samvatsara";
-import { THITHI } from "../constants/thithi";
-import { VAARA } from "../constants/vaara";
-import { Content } from "../interfaces/content";
-import { PanchangaResponse } from "../interfaces/panchanga";
+import { ContentComponent } from "@/components/content.component";
+import { AYANA } from "@/constants/ayana";
+import { MAASA } from "@/constants/maasa";
+import { PAKSHA } from "@/constants/paksha";
+import { RUTU } from "@/constants/rutu";
+import { SAMVATSARA } from "@/constants/samvatsara";
+import { THITHI } from "@/constants/thithi";
+import { VAARA } from "@/constants/vaara";
+import { Content } from "@/interfaces/content";
 
-const generateTimestamp = () => {
-  const currentDate = new Date();
-
-  const timestamp = Math.floor(currentDate.getTime() / 1000) + 342;
-
-  return timestamp;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getValueByKeyIncludes(obj: any, targetKey: string) {
+  for (const key in obj) {
+    if (targetKey?.toLowerCase().includes(key.toLowerCase())) {
+      return obj[key];
+    }
+  }
+  return "---";
 }
 
 export default async function Sandhyavandane() {
-  const url = `https://api.production.dharmayana.in/v1/panchanga/details?timestamp=${generateTimestamp()}&lat=12.97194&long=77.59369`;
+  const now = new Date();
+  const [year, month, date, hours, minutes, seconds] = [
+    now.getFullYear(),
+    now.getMonth() + 1,
+    now.getDate(),
+    now.getHours(),
+    now.getMinutes(),
+    now.getSeconds(),
+  ];
 
-  const response = await fetch(url, {
-    next: {revalidate: 3600}
-  });
-  const { data: panchanga } = await response.json() as PanchangaResponse;
+  const apiEndpoints = [
+    "samvatinfo",
+    "aayanam",
+    "rituinfo",
+    "lunarmonthinfo",
+    "tithi-durations",
+    "vedicweekday",
+  ];
 
-  const samvatsara = SAMVATSARA[panchanga.years.saka.name as keyof typeof SAMVATSARA] || "---";
-  const ayana = AYANA[panchanga.ayana.name as keyof typeof AYANA] || "---";
-  const rutu = RUTU[panchanga.ritu.name as keyof typeof RUTU] || "---";
-  const maasa = MAASA[panchanga.masa.purnima as keyof typeof MAASA] || "---";
-  const paksha = PAKSHA[panchanga.paksha as keyof typeof PAKSHA] || "---";
-  const thithi = THITHI[panchanga.tithi[0].name as keyof typeof THITHI] || "---";
-  const vaara = VAARA[panchanga.vaara.name as keyof typeof VAARA] || "---";
+  const requestBody = {
+    year,
+    month,
+    date,
+    hours,
+    minutes,
+    seconds,
+    latitude: 12.97194,
+    longitude: 77.59369,
+    timezone: 8,
+    config: {
+      observation_point: "geocentric" /* topocentric / geocentric */,
+      ayanamsha: "lahiri" /* lahiri / sayana */,
+    },
+  };
+
+  const responses = await Promise.all(
+    apiEndpoints.map((url) =>
+      fetch(`https://json.freeastrologyapi.com/${url}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": process.env.API_KEY!,
+        },
+        body: JSON.stringify(requestBody),
+        next: { revalidate: 3600 },
+      })
+    )
+  );
+
+  const panchanga = Object.assign(
+    {},
+    ...(await Promise.all(
+      responses.map(async (res, index) => {
+        const output = (await res.json()).output;
+
+        if (!output) return {};
+
+        switch (index) {
+          case 0:
+            return {
+              samvatsara: JSON.parse(output).saka_salivahana_year_name,
+            };
+          case 1:
+            return {
+              ayana: JSON.parse(output).aayanam,
+            };
+          case 2:
+            return {
+              rutu: output.name,
+            };
+          case 3:
+            return {
+              maasa: JSON.parse(output).lunar_month_name,
+            };
+          case 4:
+            return {
+              paksha: JSON.parse(output).paksha,
+              thithi: JSON.parse(output).name,
+            };
+          case 5:
+            return {
+              vaara: output.weekday_name,
+            };
+        }
+      })
+    ))
+  );
+
+  const samvatsara = getValueByKeyIncludes(SAMVATSARA, panchanga.samvatsara);
+  const ayana = getValueByKeyIncludes(AYANA, panchanga.ayana);
+  const rutu = getValueByKeyIncludes(RUTU, panchanga.rutu);
+  const maasa = getValueByKeyIncludes(MAASA, panchanga.maasa);
+  const paksha = getValueByKeyIncludes(PAKSHA, panchanga.paksha);
+  const thithi = getValueByKeyIncludes(THITHI, panchanga.thithi);
+  const vaara = getValueByKeyIncludes(VAARA, panchanga.vaara);
 
   const contents: Array<Content> = [
     {
@@ -121,8 +203,7 @@ export default async function Sandhyavandane() {
       title: "ಸಂಕಲ್ಪ",
       details: [
         {
-          paragraph:
-            `ವಿಷ್ಣೋ ವಿಷ್ಣೋ ರಾಜ್ಞಯಾ ಪ್ರವರ್ತಮಾನಸ್ಯ ಆದ್ಯ ಬ್ರಹ್ಮಣಃ , ದ್ವಿತೀಯ ಪರಾರ್ಧೇ, ಶ್ರೀಹರೇಃ, ಶ್ವೇತ ವರಾಹ ಕಲ್ಪೇ, ವೈವಸ್ವತ ಮನ್ವಂತರೇ, ಕಲಿಯುಗೇ,ಪ್ರಥಮ ಪಾದೇ, ಜಂಬೂ ದ್ವೀಪೇ, ಭರತ ಖಂಡೇ, ಭಾರತ ವರ್ಷೇ, ಶ್ರೀಮದ್ ಗೋದಾವರ್ಯಾಂ, ದಕ್ಷಿಣ ತೀರೇ, ಗೋಕರ್ಣ ಮಂಡಲೇ, ಗೋ ರಾಷ್ಟ್ರ ದೇಶೇ, ಭಾಸ್ಕರ ಕ್ಷೇತ್ರೇ, ಸಹ್ಯ ಪರ್ವತೇ, ಶಾಲಿವಾಹನ ಶಕಾಬ್ಧೇ, ಅಸ್ಮಿನ್ ವರ್ತಮಾನ ಕಾಲೇ, ವ್ಯವಹಾರಿಕೇ, ${ samvatsara } ನಾಮ ಸಂವತ್ಸರೇ, ${ayana} ಅಯನೇ, ${rutu} ಋತೌ, ${maasa} ಮಾಸೇ, ${paksha} ಪಕ್ಷೇ, ${thithi} ತಿಥೌ, ${vaara} ವಾಸರೇ, ಶುಭ ಯೋಗ, ಶುಭ ಕರಣ, ಏವಂ ಗುಣ ವಿಶೇಷಣ ವಿಶಿಷ್ಟಾಯಾಂ, ಪುಣ್ಯಯಾಂ ಪುಣ್ಯ ಕಾಲೇ , ಮಮೋಪಾತ್ತ ದುರಿತ ಕ್ಷಯ ದ್ವಾರಾ, ಶ್ರೀ ಪರಮೇಶ್ವರ ಪ್ರೀತ್ಯರ್ಥಂ ಪ್ರಾತರ್ / ಸಾಯಂ ಸಂಧ್ಯಾಮುಪಾಸ್ಯೆ`,
+          paragraph: `ವಿಷ್ಣೋ ವಿಷ್ಣೋ ರಾಜ್ಞಯಾ ಪ್ರವರ್ತಮಾನಸ್ಯ ಆದ್ಯ ಬ್ರಹ್ಮಣಃ , ದ್ವಿತೀಯ ಪರಾರ್ಧೇ, ಶ್ರೀಹರೇಃ, ಶ್ವೇತ ವರಾಹ ಕಲ್ಪೇ, ವೈವಸ್ವತ ಮನ್ವಂತರೇ, ಕಲಿಯುಗೇ,ಪ್ರಥಮ ಪಾದೇ, ಜಂಬೂ ದ್ವೀಪೇ, ಭರತ ಖಂಡೇ, ಭಾರತ ವರ್ಷೇ, ಶ್ರೀಮದ್ ಗೋದಾವರ್ಯಾಂ, ದಕ್ಷಿಣ ತೀರೇ, ಗೋಕರ್ಣ ಮಂಡಲೇ, ಗೋ ರಾಷ್ಟ್ರ ದೇಶೇ, ಭಾಸ್ಕರ ಕ್ಷೇತ್ರೇ, ಸಹ್ಯ ಪರ್ವತೇ, ಶಾಲಿವಾಹನ ಶಕಾಬ್ಧೇ, ಅಸ್ಮಿನ್ ವರ್ತಮಾನ ಕಾಲೇ, ವ್ಯವಹಾರಿಕೇ, ${samvatsara} ನಾಮ ಸಂವತ್ಸರೇ, ${ayana} ಅಯನೇ, ${rutu} ಋತೌ, ${maasa} ಮಾಸೇ, ${paksha} ಪಕ್ಷೇ, ${thithi} ತಿಥೌ, ${vaara} ವಾಸರೇ, ಶುಭ ಯೋಗ, ಶುಭ ಕರಣ, ಏವಂ ಗುಣ ವಿಶೇಷಣ ವಿಶಿಷ್ಟಾಯಾಂ, ಪುಣ್ಯಯಾಂ ಪುಣ್ಯ ಕಾಲೇ , ಮಮೋಪಾತ್ತ ದುರಿತ ಕ್ಷಯ ದ್ವಾರಾ, ಶ್ರೀ ಪರಮೇಶ್ವರ ಪ್ರೀತ್ಯರ್ಥಂ ಪ್ರಾತರ್ / ಸಾಯಂ ಸಂಧ್ಯಾಮುಪಾಸ್ಯೆ`,
         },
       ],
     },
@@ -155,7 +236,8 @@ export default async function Sandhyavandane() {
           paragraph: "ಶ್ರೀ ಗಾಯತ್ರೀ ಜಪಂ ಶ್ರೀ ಪರಮೇಶ್ವರ ಪ್ರೀಯತಾಂ ||",
         },
         {
-          paragraph: "ಓಂ ಋಗ್ವೇದಾಯ ಸ್ವಾಹಾ | ಓಂ ಯಜುರ್ವೇದಾಯ ಸ್ವಾಹಾ | ಓಂ ಸಾಮ ವೇದಾಯ ಸ್ವಾಹಾ|| ಓಂ ಋಗ್ವೇದಾಯ ಸ್ವಾಹಾ | ಓಂ ಯಜುರ್ವೇದಾಯ ಸ್ವಾಹಾ | ಓಂ ಸಾಮ ವೇದಾಯ ಸ್ವಾಹಾ ||",
+          paragraph:
+            "ಓಂ ಋಗ್ವೇದಾಯ ಸ್ವಾಹಾ | ಓಂ ಯಜುರ್ವೇದಾಯ ಸ್ವಾಹಾ | ಓಂ ಸಾಮ ವೇದಾಯ ಸ್ವಾಹಾ|| ಓಂ ಋಗ್ವೇದಾಯ ಸ್ವಾಹಾ | ಓಂ ಯಜುರ್ವೇದಾಯ ಸ್ವಾಹಾ | ಓಂ ಸಾಮ ವೇದಾಯ ಸ್ವಾಹಾ ||",
         },
         {
           paragraph: "ಓಂ ತತ್ಸತ್",
@@ -163,8 +245,6 @@ export default async function Sandhyavandane() {
       ],
     },
   ];
-  
-  return (
-    <ContentComponent contents={contents}/>
-  );
+
+  return <ContentComponent contents={contents} />;
 }

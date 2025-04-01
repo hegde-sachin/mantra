@@ -1,4 +1,4 @@
-import { Content } from "../interfaces/content";
+import { Content } from "@/interfaces/content";
 
 interface ContentComponentProps {
   contents: Array<Content>;
