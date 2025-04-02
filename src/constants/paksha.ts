@@ -1,4 +1,4 @@
 export const PAKSHA = {
-    "Shukla": "ಶುಕ್ಲ",
-    "Krishna": "ಕೃಷ್ಣ"
+  shukla: "ಶುಕ್ಲ",
+  krishna: "ಕೃಷ್ಣ",
 };

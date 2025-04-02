@@ -8,15 +8,15 @@ import { THITHI } from "@/constants/thithi";
 import { VAARA } from "@/constants/vaara";
 import { Content } from "@/interfaces/content";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function getValueByKeyIncludes(obj: any, targetKey: string) {
-  for (const key in obj) {
-    if (targetKey?.toLowerCase().includes(key.toLowerCase())) {
-      return obj[key];
-    }
-  }
-  return "---";
-}
+type Panchanga = {
+  samvatsara: keyof typeof SAMVATSARA;
+  ayana: keyof typeof AYANA;
+  rutu: keyof typeof RUTU;
+  maasa: keyof typeof MAASA;
+  paksha: keyof typeof PAKSHA;
+  thithi: keyof typeof THITHI;
+  vaara: keyof typeof VAARA;
+};
 
 export default async function Sandhyavandane() {
   const now = new Date();
@@ -68,7 +68,7 @@ export default async function Sandhyavandane() {
     )
   );
 
-  const panchanga = Object.assign(
+  const panchanga: Panchanga = Object.assign(
     {},
     ...(await Promise.all(
       responses.map(async (res, index) => {
@@ -107,13 +107,13 @@ export default async function Sandhyavandane() {
     ))
   );
 
-  const samvatsara = getValueByKeyIncludes(SAMVATSARA, panchanga.samvatsara);
-  const ayana = getValueByKeyIncludes(AYANA, panchanga.ayana);
-  const rutu = getValueByKeyIncludes(RUTU, panchanga.rutu);
-  const maasa = getValueByKeyIncludes(MAASA, panchanga.maasa);
-  const paksha = getValueByKeyIncludes(PAKSHA, panchanga.paksha);
-  const thithi = getValueByKeyIncludes(THITHI, panchanga.thithi);
-  const vaara = getValueByKeyIncludes(VAARA, panchanga.vaara);
+  const samvatsara = SAMVATSARA[panchanga.samvatsara] || "---";
+  const ayana = AYANA[panchanga.ayana] || "---";
+  const rutu = RUTU[panchanga.rutu] || "---";
+  const maasa = MAASA[panchanga.maasa] || "---";
+  const paksha = PAKSHA[panchanga.paksha];
+  const thithi = THITHI[panchanga.thithi];
+  const vaara = VAARA[panchanga.vaara];
 
   const contents: Array<Content> = [
     {

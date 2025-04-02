@@ -1,4 +1,4 @@
 export const AYANA = {
-    "Uttarayanam": "ಉತ್ತರ",
-    "Dakshinayanam": "ದಕ್ಷಿಣ",
+  Uttarayanam: "ಉತ್ತರ",
+  Dakshinayanam: "ದಕ್ಷಿಣ",
 };

@@ -1,8 +1,8 @@
 export const RUTU = {
-    "Vasant": "ವಸಂತ",
-    "Grishma": "ಗ್ರೀಷ್ಮ",
-    "Varsha": "ವರ್ಷಾ",
-    "Sarat": "ಶರದ್",
-    "Hemant": "ಹೇಮಂತ",
-    "Shishira": "ಶಿಶಿರ"
+  "Vasant (Spring)": "ವಸಂತ",
+  "Grishma (Summer)": "ಗ್ರೀಷ್ಮ",
+  "Varsha (Monsoon)": "ವರ್ಷಾ",
+  "Sarat (Autumn)": "ಶರದ್",
+  "Hemant (Winter)": "ಹೇಮಂತ",
+  "Sisira (Winter & Fall)": "ಶಿಶಿರ",
 };

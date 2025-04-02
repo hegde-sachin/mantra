@@ -6,9 +6,9 @@
   --background: #ffffff;
   --foreground: #171717;
   --brand-color: #8a2b06;
-  --accent-3: #FFE8DE;
-  --accent-4: #FFD9C9;
-  --accent-11: #D13600;
+  --accent-3: #ffe8de;
+  --accent-4: #ffd9c9;
+  --accent-11: #d13600;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,9 +16,9 @@
     --background: #0a0a0a;
     --foreground: #ededed;
     --brand-color: #8a2b06;
-    --accent-3: #FFE8DE;
-    --accent-4: #FFD9C9;
-    --accent-11: #D13600;
+    --accent-3: #ffe8de;
+    --accent-4: #ffd9c9;
+    --accent-11: #d13600;
   }
 }
 
