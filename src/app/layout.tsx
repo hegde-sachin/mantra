@@ -1,8 +1,10 @@
-import type { Metadata } from "next";
 import "./globals.css";
+
+import type { Metadata } from "next";
+import localFont from "next/font/local";
+
 import { HeaderComponent } from "@/components/header.component";
 import { MainComponent } from "@/components/main.component";
-import localFont from "next/font/local";
 
 const anekKannadaFont = localFont({
   src: [
