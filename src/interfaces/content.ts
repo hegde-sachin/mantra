@@ -4,6 +4,6 @@ interface ContentDetail {
 }
 
 export interface Content {
-  title: string;
+  title?: string;
   details: Array<ContentDetail>;
 }

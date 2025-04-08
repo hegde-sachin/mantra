@@ -1,9 +1,7 @@
 import type { Config } from "tailwindcss";
 
 export default {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
       colors: {
@@ -12,7 +10,7 @@ export default {
         "brand-color": "var(--brand-color)",
         "accent-3": "var(--accent-3)",
         "accent-4": "var(--accent-4)",
-        "accent-11": "var(--accent-11)"
+        "accent-11": "var(--accent-11)",
       },
     },
     fontSize: {
@@ -25,15 +23,16 @@ export default {
       "5xLarge": "2.5rem",
     },
     maxWidth: {
-      container: '64rem'
+      container: "64rem",
     },
     height: {
-      header: '5rem',
-      mainLink: '3rem',
+      header: "5rem",
+      navLink: "2rem",
+      mainLink: "3rem",
     },
     minHeight: {
-      main: 'calc(100dvh - 5rem)'
-    }
+      main: "calc(100dvh - 5rem)",
+    },
   },
   plugins: [],
 } satisfies Config;
