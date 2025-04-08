@@ -8,6 +8,10 @@ export const routes = [
     url: "ganapati-atharvasheersha",
   },
   {
+    name: "ದುರ್ಗಾ ಸೂಕ್ತ",
+    url: "durga-sukta",
+  },
+  {
     name: "ಪುರುಷ ಸೂಕ್ತ",
     url: "purusha-sukta",
   },
