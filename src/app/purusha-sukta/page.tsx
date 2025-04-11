@@ -1,7 +1,7 @@
 import { ContentComponent } from "@/components/content.component";
 import { Content } from "@/interfaces/content";
 
-export default async function GanapatiUpanishath() {
+export default async function PurushaSukta() {
   const contents: Array<Content> = [
     {
       details: [

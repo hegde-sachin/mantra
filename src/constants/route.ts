@@ -15,4 +15,8 @@ export const routes = [
     name: "ಪುರುಷ ಸೂಕ್ತ",
     url: "purusha-sukta",
   },
+  {
+    name: "ಮಂತ್ರ ಪುಷ್ಪ",
+    url: "mantra-pushpa",
+  },
 ];
