@@ -111,9 +111,9 @@ export default async function Sandhyavandane() {
   const ayana = AYANA[panchanga.ayana] || "---";
   const rutu = RUTU[panchanga.rutu] || "---";
   const maasa = MAASA[panchanga.maasa] || "---";
-  const paksha = PAKSHA[panchanga.paksha];
-  const thithi = THITHI[panchanga.thithi];
-  const vaara = VAARA[panchanga.vaara];
+  const paksha = PAKSHA[panchanga.paksha] || "---";
+  const thithi = THITHI[panchanga.thithi] || "---";
+  const vaara = VAARA[panchanga.vaara] || "---";
 
   const contents: Array<Content> = [
     {
