@@ -1,5 +1,7 @@
 import { Content } from "@/interfaces/content";
 
+import { ClientComponent } from "./client.component";
+
 interface ContentComponentProps {
   contents: Array<Content>;
 }
@@ -7,6 +9,7 @@ interface ContentComponentProps {
 export const ContentComponent = ({ contents }: ContentComponentProps) => {
   return (
     <div className="flex flex-col gap-4">
+      <ClientComponent />
       {contents.map((content, index) => (
         <div key={index} className="flex flex-col gap-2">
           {content.title && (
