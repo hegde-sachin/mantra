@@ -119,11 +119,13 @@ export async function getPanchangaData() {
   if (existing) {
     const age = now.getTime() - existing.updatedAt.getTime();
     if (age < TWO_HOURS_MS) {
+      console.log("Existing Panchanga:", existing);
       return existing.panchanga;
     }
   }
 
   const freshData = await fetchFromAPI();
+  console.log("Fetched fresh Panchanga:", freshData);
 
   await collection.updateOne(
     { _id: "singleton" },
