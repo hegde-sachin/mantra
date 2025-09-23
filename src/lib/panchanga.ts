@@ -1,3 +1,4 @@
+import { VAARA } from "@/constants/vaara";
 import { Panchanga } from "@/interfaces/panchanga";
 
 import clientPromise from "./mongodb";
@@ -44,13 +45,22 @@ async function fetchFromAPI(): Promise<Panchanga> {
     now.getSeconds(),
   ];
 
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
   const apiEndpoints = [
     "samvatinfo",
     "aayanam",
     "rituinfo",
     "lunarmonthinfo",
     "tithi-durations",
-    "vedicweekday",
   ];
 
   const requestBody = {
@@ -91,12 +101,7 @@ async function fetchFromAPI(): Promise<Panchanga> {
 
         if (!output) return {};
 
-        let respnseData;
-        if (index === 2 || index === 5) {
-          respnseData = output;
-        } else {
-          respnseData = safeJSONParse(output);
-        }
+        const respnseData = index === 2 ? output : safeJSONParse(output);
 
         switch (index) {
           case 0:
@@ -120,16 +125,12 @@ async function fetchFromAPI(): Promise<Panchanga> {
               paksha: respnseData.paksha,
               thithi: respnseData.name,
             };
-          case 5:
-            return {
-              vaara: respnseData.weekday_name,
-            };
         }
       })
     ))
   );
 
-  return panchanga;
+  return { ...panchanga, vaara: days[now.getDay()] as keyof typeof VAARA };
 }
 
 /**
