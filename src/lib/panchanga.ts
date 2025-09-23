@@ -3,7 +3,7 @@ import { Panchanga } from "@/interfaces/panchanga";
 
 import clientPromise from "./mongodb";
 
-const TWO_HOURS_MS = 2 * 60 * 60 * 1000;
+const TWO_HOURS_MS = 2 * 60 * 60 * 1000 + 24 * 60 * 1000; // 2 hours and 24 minutes
 
 interface PanchangaDoc {
   _id: string;
@@ -147,13 +147,11 @@ export async function getPanchangaData() {
   if (existing) {
     const age = now.getTime() - existing.updatedAt.getTime();
     if (age < TWO_HOURS_MS) {
-      console.log("Existing Panchanga:", existing);
       return existing.panchanga;
     }
   }
 
   const freshData = await fetchFromAPI();
-  console.log("Fetched fresh Panchanga:", freshData);
 
   await collection.updateOne(
     { _id: "singleton" },
