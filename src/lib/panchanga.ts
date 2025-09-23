@@ -11,6 +11,26 @@ interface PanchangaDoc {
 }
 
 /**
+ * Safely parses JSON, handling double-encoded strings.
+ * Returns null if parsing fails.
+ */
+function safeJSONParse(response: string) {
+  try {
+    let parsed = JSON.parse(response);
+
+    // If it's still a string, parse again
+    if (typeof parsed === "string") {
+      parsed = JSON.parse(parsed);
+    }
+
+    return parsed;
+  } catch (e) {
+    console.error("Invalid JSON:", e);
+    return null;
+  }
+}
+
+/**
  * Fetches from external API. Adjust payload/headers for the real API.
  */
 async function fetchFromAPI(): Promise<Panchanga> {
@@ -71,31 +91,38 @@ async function fetchFromAPI(): Promise<Panchanga> {
 
         if (!output) return {};
 
+        let respnseData;
+        if (index === 2 || index === 5) {
+          respnseData = output;
+        } else {
+          respnseData = safeJSONParse(output);
+        }
+
         switch (index) {
           case 0:
             return {
-              samvatsara: JSON.parse(output).saka_salivahana_year_name,
+              samvatsara: respnseData.saka_salivahana_year_name,
             };
           case 1:
             return {
-              ayana: JSON.parse(output).aayanam,
+              ayana: respnseData.aayanam,
             };
           case 2:
             return {
-              rutu: output.name,
+              rutu: respnseData.name,
             };
           case 3:
             return {
-              maasa: JSON.parse(output).lunar_month_name,
+              maasa: respnseData.lunar_month_name,
             };
           case 4:
             return {
-              paksha: JSON.parse(output).paksha,
-              thithi: JSON.parse(output).name,
+              paksha: respnseData.paksha,
+              thithi: respnseData.name,
             };
           case 5:
             return {
-              vaara: output.weekday_name,
+              vaara: respnseData.weekday_name,
             };
         }
       })
