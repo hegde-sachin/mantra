@@ -138,14 +138,16 @@ async function fetchFromAPI(): Promise<Panchanga> {
  */
 export async function getPanchangaData() {
   const client = await clientPromise;
-  const db = client.db(); // uses default DB in URI
+  const db = client.db("havyaka-mantra");
   const collection = db.collection<PanchangaDoc>("panchangaDoc");
 
   const now = new Date();
   const existing = await collection.findOne({ _id: "singleton" });
 
   if (existing) {
-    const age = now.getTime() - existing.updatedAt.getTime();
+    const updatedAt = new Date(existing.updatedAt);
+    const age = now.getTime() - updatedAt.getTime();
+
     if (age < TWO_HOURS_MS) {
       return existing.panchanga;
     }
