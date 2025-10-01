@@ -3,7 +3,7 @@ import { Panchanga } from "@/interfaces/panchanga";
 
 import clientPromise from "./mongodb";
 
-const TWO_HOURS_MS = 2 * 60 * 60 * 1000 + 24 * 60 * 1000; // 2 hours and 24 minutes
+const REVALIDATE_INTERVAL = 2 * 60 * 60 * 1000 + 24 * 60 * 1000; // 2 hours and 24 minutes
 
 interface PanchangaDoc {
   _id: string;
@@ -88,7 +88,6 @@ async function fetchFromAPI(): Promise<Panchanga> {
           "x-api-key": process.env.API_KEY!,
         },
         body: JSON.stringify(requestBody),
-        next: { revalidate: 3600 },
       })
     )
   );
@@ -101,29 +100,29 @@ async function fetchFromAPI(): Promise<Panchanga> {
 
         if (!output) return {};
 
-        const respnseData = index === 2 ? output : safeJSONParse(output);
+        const responseData = index === 2 ? output : safeJSONParse(output);
 
         switch (index) {
           case 0:
             return {
-              samvatsara: respnseData.saka_salivahana_year_name,
+              samvatsara: responseData.saka_salivahana_year_name,
             };
           case 1:
             return {
-              ayana: respnseData.aayanam,
+              ayana: responseData.aayanam,
             };
           case 2:
             return {
-              rutu: respnseData.name,
+              rutu: responseData.name,
             };
           case 3:
             return {
-              maasa: respnseData.lunar_month_name,
+              maasa: responseData.lunar_month_name,
             };
           case 4:
             return {
-              paksha: respnseData.paksha,
-              thithi: respnseData.name,
+              paksha: responseData.paksha,
+              thithi: responseData.name,
             };
         }
       })
@@ -148,7 +147,7 @@ export async function getPanchangaData() {
     const updatedAt = new Date(existing.updatedAt);
     const age = now.getTime() - updatedAt.getTime();
 
-    if (age < TWO_HOURS_MS) {
+    if (age < REVALIDATE_INTERVAL) {
       return existing.panchanga;
     }
   }

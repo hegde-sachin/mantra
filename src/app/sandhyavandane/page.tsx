@@ -9,6 +9,8 @@ import { VAARA } from "@/constants/vaara";
 import { Content } from "@/interfaces/content";
 import { getPanchangaData } from "@/lib/panchanga";
 
+export const revalidate = 3600;
+
 export default async function Sandhyavandane() {
   const panchanga = {
     samvatsara: "---",
